@@ -14,7 +14,7 @@ function App() {
     editorRef.current = editor;
     const ydoc = new Y.Doc(); 
     const yarray = ydoc.getArray()
-    const provider = new WebrtcProvider('webrtc-test', ydoc, { signaling: ['ws://backend-test-production-1d6f.up.railway.app']})
+    const provider = new WebrtcProvider('webrtc-test', ydoc, { signaling: ['wss://backend-test-production-1d6f.up.railway.app']})
     const type = ydoc.getText("monaco"); 
     const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness);
     console.log(provider.awareness);     
