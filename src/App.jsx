@@ -1,41 +1,28 @@
-import { useRef } from 'react'
-import Editor from "@monaco-editor/react"
-import * as Y from "yjs"
-import { WebrtcProvider } from "y-webrtc"
-import { MonacoBinding } from "y-monaco"
+import { useState, useEffect } from 'react';
+import { v4 as uuid } from 'uuid'; // Import UUID generator
 
-// Setup Monaco Editor
-// Attach YJS Text to Monaco Editor
+import CodeEditor from './components/CodeEditor';
 
 function App() {
-  const editorRef = useRef(null);
+  const [roomID, setRoomID] = useState('');
 
-  function handleEditorDidMount(editor, monaco) {
-    editorRef.current = editor;
-    const ydoc = new Y.Doc(); 
-    const yarray = ydoc.getArray()
-    const provider = new WebrtcProvider('webrtc-test', ydoc, { signaling: ['wss://backend-test-production-1d6f.up.railway.app']})
-    const type = ydoc.getText("monaco"); 
-    const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness);
-    console.log(provider.awareness);     
-    
-    provider.on('synced', synced => {
-      console.log('synced!', synced)
-    })
+  useEffect(() => {
+    const url = window.location.pathname;
+    const pathSegments = url.split('/').filter(segment => segment.trim() !== '');
 
-    yarray.observeDeep(() => {
-      console.log('yarray updated: ', yarray.toJSON())
-    })
-  }
+    if (pathSegments.length === 1 && pathSegments[0].length === 36) {
+      setRoomID(pathSegments[0]);
+    } else {
+      const newRoomID = uuid();
+      setRoomID(newRoomID);
+      const newUrl = `/${newRoomID}`;
+      window.history.replaceState(null, '', newUrl);
+    }
+  }, []);
 
   return (
-    <Editor
-      height="50vh"
-      width="100vw"
-      theme="vs-dark"
-      onMount={handleEditorDidMount}
-    />
-  )
+    <CodeEditor key={roomID} roomID={roomID} />
+  );
 }
 
-export default App
+export default App;
