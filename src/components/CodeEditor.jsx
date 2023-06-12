@@ -23,7 +23,7 @@ const CodeEditor = ({ roomID }) => {
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
         const ydoc = new Y.Doc(); 
-        const provider = new WebrtcProvider(roomID, ydoc, { signaling: [import.meta.env.VITE_BACKEND_URL, 'ws://localhost:4444'] })
+        const provider = new WebrtcProvider(roomID, ydoc, { signaling: [import.meta.env.VITE_BACKEND_URL] })
         const type = ydoc.getText("monaco"); 
 
         const undoManager = new Y.UndoManager(type)
