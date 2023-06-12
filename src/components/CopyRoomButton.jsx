@@ -14,7 +14,7 @@ function CopyRoomButton() {
   };
 
   return (
-    <button onClick={copyUrlToClipboard}>Copy URL</button>
+    <button className='border-black border-2' onClick={copyUrlToClipboard}>Copy URL</button>
   );
 }
 

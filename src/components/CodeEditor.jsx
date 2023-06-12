@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import Editor from "@monaco-editor/react"
 import * as Y from "yjs"
-import { WebsocketProvider } from 'y-websocket'
+import { WebrtcProvider } from 'y-webrtc'
 import { MonacoBinding } from "y-monaco"
 import LanguagesDropdown from './LanguageDropdown'
 import CompileButton from './CompileButton'
@@ -21,10 +21,9 @@ const CodeEditor = ({ roomID }) => {
     const [input, setInput] = useState('');
 
     function handleEditorDidMount(editor, monaco) {
-        console.log(roomID)
         editorRef.current = editor;
         const ydoc = new Y.Doc(); 
-        const provider = new WebsocketProvider('ws://localhost:1234', roomID, ydoc)
+        const provider = new WebrtcProvider(roomID, ydoc, { signaling: [import.meta.env.VITE_BACKEND_URL, 'ws://localhost:4444'] })
         const type = ydoc.getText("monaco"); 
 
         const undoManager = new Y.UndoManager(type)

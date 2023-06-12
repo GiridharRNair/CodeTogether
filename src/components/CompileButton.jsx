@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 const currStatus = ['Compiling', 'Compiling.', 'Compiling..', ' Compiling...'];
 
@@ -97,13 +96,11 @@ function CompileButton({ content, langauge, input, setOutput }) {
             } else {
                 stopInterval();
                 setOutput(response.data)
-                toast('Execution Finished')
                 return
             }
         } catch (err) {
                 console.log("err", err);
                 stopInterval();
-                toast.error(`Execution error: ${err}`)
             }
         };
 
