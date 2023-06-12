@@ -25,6 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/:uuid" element={<CodeEditor key={roomID} roomID={roomID}/>} />
+        <Route path="/" element={<CodeEditor key={roomID} roomID={roomID}/>} />
       </Routes>
     </BrowserRouter>
   );
