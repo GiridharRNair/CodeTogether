@@ -22,6 +22,7 @@ const CodeEditor = ({ roomID }) => {
 
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
+        editorRef.current.getModel().setEOL(0);
         const ydoc = new Y.Doc(); 
         const provider = new WebrtcProvider(roomID, ydoc, { signaling: [import.meta.env.VITE_BACKEND_URL] })
         const type = ydoc.getText("monaco"); 
