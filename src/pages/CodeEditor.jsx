@@ -3,14 +3,14 @@ import Editor from "@monaco-editor/react"
 import * as Y from "yjs"
 import { WebrtcProvider } from 'y-webrtc'
 import { MonacoBinding } from "y-monaco"
-import LanguagesDropdown from './LanguageDropdown'
-import CompileButton from './CompileButton'
-import InputWindow from './InputWindow'
-import OutputWindow from './OutputWindow'
+import LanguagesDropdown from '../components/LanguageDropdown'
+import CompileButton from '../components/CompileButton'
+import InputWindow from '../components/InputWindow'
+import OutputWindow from '../components/OutputWindow'
 import { languageOptions } from '../data/languageOptions'
 import randomColor from 'randomcolor'
-import Client from './Client'
-import CopyRoomButton from './CopyRoomButton'
+import Client from '../components/Client'
+import CopyRoomButton from '../components/CopyRoomButton'
 
 const CodeEditor = ({ roomID }) => {
 

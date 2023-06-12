@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid'; // Import UUID generator
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import CodeEditor from './components/CodeEditor';
+import CodeEditor from './pages/CodeEditor';
 
 function App() {
   const [roomID, setRoomID] = useState('');
@@ -21,7 +22,11 @@ function App() {
   }, []);
 
   return (
-    <CodeEditor key={roomID} roomID={roomID} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/:uuid" element={<CodeEditor key={roomID} roomID={roomID}/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
