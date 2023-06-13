@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import axios from 'axios';
 
-const currStatus = ['Compiling', 'Compiling.', 'Compiling..', ' Compiling...'];
+const currStatus = ['Running', 'Running.', 'Running..', ' Running...'];
 
 function CompileButton({ content, langauge, input, setOutput }) {
   
@@ -105,7 +105,7 @@ function CompileButton({ content, langauge, input, setOutput }) {
         };
 
     return (
-        <button className='border-black border-2' disabled={processing} onClick={compileCode}>{status}</button>
+        <button className='md:w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mr-1' disabled={processing} onClick={compileCode}>{status}</button>
     )
 }
 

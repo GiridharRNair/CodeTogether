@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
-import { v4 as uuid } from 'uuid'; // Import UUID generator
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ShortUniqueId from 'short-unique-id';
 
 import CodeEditor from './pages/CodeEditor';
 
 function App() {
   const [roomID, setRoomID] = useState('');
+  const uuid = new ShortUniqueId({ length: 10 });
 
   useEffect(() => {
     const url = window.location.pathname;
     const pathSegments = url.split('/').filter(segment => segment.trim() !== '');
 
-    if (pathSegments.length === 1 && pathSegments[0].length === 36) {
+    if (pathSegments.length === 1 && pathSegments[0].length === 10) {
       setRoomID(pathSegments[0]);
     } else {
       const newRoomID = uuid();
@@ -22,12 +23,14 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/:uuid" element={<CodeEditor key={roomID} roomID={roomID}/>} />
-        <Route path="/" element={<CodeEditor key={roomID} roomID={roomID}/>} />
-      </Routes>
-    </BrowserRouter>
+    <div className='h-screen overflow-y-scroll no-scrollbar'>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/:uuid" element={<CodeEditor key={roomID} roomID={roomID}/>} />
+          <Route path="/" element={<CodeEditor key={roomID} roomID={roomID}/>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

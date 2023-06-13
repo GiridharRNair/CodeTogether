@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.yRemoteSelectionHead {
+    position: absolute;
+    border-left: #3482F6 solid 2px;
+    border-top: #3482F6 solid 2px;
+    border-bottom: #3482F6 solid 2px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.yRemoteSelectionHead::after {
+    position: absolute;
+    content: ' ';
+    border: 3px solid #3482F6;
+    border-radius: 4px;
+    left: -4px;
+    top: -5px;
+}
+
+@layer utilities {
+    @variants responsive {
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    }
+}

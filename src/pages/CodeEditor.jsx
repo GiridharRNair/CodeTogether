@@ -11,6 +11,7 @@ import { languageOptions } from '../data/languageOptions'
 import randomColor from 'randomcolor'
 import Client from '../components/Client'
 import CopyRoomButton from '../components/CopyRoomButton'
+import OutputDetails from '../components/OutputDetails'
 
 const CodeEditor = ({ roomID }) => {
 
@@ -54,35 +55,36 @@ const CodeEditor = ({ roomID }) => {
     }
 
     return (
-        <>
-            <div className='flex flex-row space-x-3 pt-1 pb-3'>
+        <div className='mx-5 space-y-1 py-1'>
+            <div className='flex flex-row space-x-3'>
                 {users.map((user, index) => (
                     <Client
-                    key={index} // Use the index as the key prop
-                    username={user}
+                        key={index} // Use the index as the key prop
+                        username={user}
                     />
                 ))}
             </div>
-            <CopyRoomButton />
             <LanguagesDropdown currValue={currLang} onSelectChange={(event) => setCurrLang(event)}/>
             <Editor
                 className='justify-center'
                 language={currLang.value}
                 height="50vh"
-                width="100vw"
-                theme="vs-dark"
+                theme='vs-dark'
                 onMount={handleEditorDidMount}
                 options={{
                     cursorBlinking: "smooth",
                 }}
             />
-            <CompileButton content={editorRef} langauge={currLang.id} input={input} setOutput={(output) => {setCompilerText(output)}}/>
+            <div className='flex flex-row'>
+                <CompileButton content={editorRef} langauge={currLang.id} input={input} setOutput={(output) => {setCompilerText(output)}}/>
+                <CopyRoomButton />
+            </div>
             <div className='flex md:flex-row md:space-x-2 flex-col'>
                 <InputWindow setInput={(input) => {setInput(input)}}/>
-                <OutputWindow outputDetails={compilerText} />
+                <OutputWindow outputDetails={compilerText}/>
             </div>
-        </>
-
+            <OutputDetails outputDetails={compilerText}/>
+        </div>
     )
 }
 

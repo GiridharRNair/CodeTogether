@@ -36,10 +36,10 @@ const OutputWindow = ({ outputDetails }) => {
 
   return (
     <div className='flex flex-col w-full'>
-      <h1 className="text-stone-500 font-bold text-xl mb-2">
+      <h1 className="text-stone-500 font-bold text-xl">
         Output
       </h1>
-      <div className="h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto">
+      <div className="h-56 bg-[#1e1e1e] rounded-md text-white font-normal text-sm overflow-y-auto">
         {outputDetails ? <>{getOutput()}</> : null}
       </div>
     </div>
