@@ -30,7 +30,7 @@ const CodeEditor = ({ roomID }) => {
 
         const undoManager = new Y.UndoManager(type)
 
-        var person = prompt("Please enter your name");
+        var person = prompt("Please enter your name, under 10 characters").slice(0, 10);
 
         if (!person) {
             person = Math.floor(Math.random() * 10) + "User";
