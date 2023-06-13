@@ -17,6 +17,7 @@ const CodeEditor = ({ roomID }) => {
 
     const editorRef = useRef(null);
     const [users, setUsers] = useState([]);
+    const [hideUsers, setHideUsers] = useState(false);
     const [currLang, setCurrLang] = useState(languageOptions[0]);
     const [compilerText, setCompilerText] = useState('');
     const [input, setInput] = useState('');
@@ -45,9 +46,13 @@ const CodeEditor = ({ roomID }) => {
             
         awareness.on('change', changes => {
             var jsonData = (Array.from(awareness.getStates().values()))
-            setUsers(jsonData.map(item => item.user.name));
+            if (jsonData.length > 1) {
+                setHideUsers(false);
+                setUsers(jsonData.map(item => item.user.name));
+            } else {
+                setHideUsers(true);
+            }
         })
-            
 
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), awareness);
         
@@ -57,12 +62,13 @@ const CodeEditor = ({ roomID }) => {
     return (
         <div className='mx-5 space-y-1 py-1'>
             <div className='flex flex-row space-x-3'>
-                {users.map((user, index) => (
-                    <Client
-                        key={index} // Use the index as the key prop
-                        username={user}
-                    />
-                ))}
+                {hideUsers ? null : (
+                    <div className='flex flex-row space-x-3'>
+                        {users.map((user, index) => (
+                            <Client key={index} username={user} />
+                        ))}
+                    </div>
+                )}
             </div>
             <LanguagesDropdown currValue={currLang} onSelectChange={(event) => setCurrLang(event)}/>
             <Editor
