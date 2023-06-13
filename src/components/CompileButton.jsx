@@ -12,6 +12,16 @@ function CompileButton({ content, langauge, input, setOutput }) {
     let intervalId;
     var statusChange = 0;
 
+    function hasNonLatin1Characters(str) {
+        for (let i = 0; i < str.length; i++) {
+            const charCode = str.charCodeAt(i);
+            if (charCode > 255) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     function statusUpdate () {
         if (statusChange === 0) {
             setStatus(currStatus[0]);
@@ -41,8 +51,9 @@ function CompileButton({ content, langauge, input, setOutput }) {
 
     async function compileCode() {
         var sourceCode = content.current.getValue().replace(regex, '')
-        
-        if(!sourceCode) {
+
+        if(!sourceCode || hasNonLatin1Characters(sourceCode)) {
+            alert('Cannot compile. Code editor either contains special characters or is empty.')
             return;
         }
 

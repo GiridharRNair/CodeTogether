@@ -31,13 +31,13 @@ const CodeEditor = ({ roomID }) => {
 
         const undoManager = new Y.UndoManager(type)
 
-        var person = prompt("Please enter your name, under 10 characters")
+        var person = prompt("Please enter your name, under 10 characters");
 
-        if (!person) {
+        if (!person || person.trim() === '' || person.trim() === '\u200B') {
             person = Math.floor(Math.random() * 10) + "User";
         } else {
-            person = person.slice(0, 10);
-        }
+            person = person.trim().slice(0, 10);
+        }        
 
         const awareness = provider.awareness;
 

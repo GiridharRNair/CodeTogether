@@ -17,7 +17,6 @@ To run this project, you will need to add the following environment variables to
 `VITE_BACKEND_URL`={The link to the deployment of the y-webrtc back-end}
 
 
-
 ## Run Locally
 
 Clone the project
@@ -45,12 +44,22 @@ Start the development server
 ```
 
 
-## Acknowledgements
+## Credits
 
-Feel free to contribute to this project by submitting issues or pull requests.
+This project utilizes the following open-source technologies:
+
+[Yjs](https://github.com/yjs/yjs): A real-time collaboration framework that enables shared editing of documents in a distributed environment.
+
+[Y-Webrtc](https://github.com/yjs/y-webrtc): A backend server for Yjs that leverages WebRTC technology to enable real-time collaboration between multiple users.
+
+We express our gratitude to the developers of Yjs and Y-Webrtc for their excellent work in creating these tools. Without their contributions, this project would not have been possible.
+
+Please visit their respective repositories for more information and to show your support for their projects.##
 
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+Feel free to contribute to this project by submitting issues or pull requests.
 
