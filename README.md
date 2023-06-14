@@ -52,10 +52,6 @@ This project utilizes the following open-source technologies:
 
 [Y-Webrtc](https://github.com/yjs/y-webrtc): A backend server for Yjs that leverages WebRTC technology to enable real-time collaboration between multiple users.
 
-We express our gratitude to the developers of Yjs and Y-Webrtc for their excellent work in creating these tools. Without their contributions, this project would not have been possible.
-
-Please visit their respective repositories for more information and to show your support for their projects.##
-
 
 ## License
 
