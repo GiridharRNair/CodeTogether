@@ -6,13 +6,13 @@ import CodeEditor from './pages/CodeEditor';
 
 function App() {
   const [roomID, setRoomID] = useState('');
-  const uuid = new ShortUniqueId({ length: 10 });
+  const uuid = new ShortUniqueId({ length: 6 });
 
   useEffect(() => {
     const url = window.location.pathname;
     const pathSegments = url.split('/').filter(segment => segment.trim() !== '');
 
-    if (pathSegments.length === 1 && pathSegments[0].length === 10) {
+    if (pathSegments.length === 1 && pathSegments[0].length === 6) {
       setRoomID(pathSegments[0]);
     } else {
       const newRoomID = uuid();

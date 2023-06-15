@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.yRemoteSelection {
+    background-color: rgb(250, 129, 0, .5)
+}
+
 .yRemoteSelectionHead {
     position: absolute;
     border-left: #3482F6 solid 2px;

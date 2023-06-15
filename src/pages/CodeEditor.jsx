@@ -21,6 +21,7 @@ const CodeEditor = ({ roomID }) => {
     const [currLang, setCurrLang] = useState(languageOptions[0]);
     const [compilerText, setCompilerText] = useState('');
     const [input, setInput] = useState('');
+    const randomUserColor = randomColor();
 
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
@@ -43,21 +44,73 @@ const CodeEditor = ({ roomID }) => {
 
         awareness.setLocalStateField("user", {
             name: person,
-            color: randomColor(),
+            color: randomUserColor
         });
             
         awareness.on('change', changes => {
-            var jsonData = (Array.from(awareness.getStates().values()))
+            var jsonData = Array.from(awareness.getStates());
             if (jsonData.length > 1) {
                 setHideUsers(false);
-                setUsers(jsonData.map(item => item.user.name));
+                setUsers(jsonData.map(item => ({
+                    clientId: item[0],
+                    name: item[1].user.name,
+                    color: item[1].user.color
+                })));
             } else {
                 setHideUsers(true);
             }
-        })
+        });        
 
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), awareness);
         
+        awareness.on('update', () => {
+            var jsonData = Array.from(awareness.getStates());
+
+            var clientsArr = jsonData.map(item => ({
+                clientId: item[0],
+                name: item[1].user.name,
+                color: item[1].user.color
+            }));
+
+            clientsArr.forEach(client => {
+                const selectionClass = `yRemoteSelection-${client.clientId}`;
+                const selectionHeadClass = `yRemoteSelectionHead-${client.clientId}`;
+                const selectionStyle = document.createElement('style');
+                selectionStyle.innerHTML = `
+                    .${selectionClass} {
+                        background-color: ${client.color};
+                    }
+
+                    .${selectionHeadClass} {
+                        position: absolute;
+                        border-left: ${client.color} solid 2px;
+                        border-top: ${client.color} solid 2px;
+                        border-bottom: ${client.color} solid 2px;
+                        height: 100%;
+                        box-sizing: border-box;
+                    }
+
+                    .${selectionHeadClass}::after {
+                        position: absolute;
+                        content: ' ';
+                        border: 3px solid ${client.color};
+                        border-radius: 4px;
+                        left: -4px;
+                        top: -5px;
+                    }
+
+                    .${selectionHeadClass}:hover::before {
+                        content: '${client.name}';
+                        position: absolute;
+                        color: ${client.color};
+                        padding-left: 3px;
+                        font-size: 12px;
+                    }
+                `;
+                document.head.appendChild(selectionStyle);
+            });
+        });          
+
         provider.connect();
     }
 
@@ -66,8 +119,8 @@ const CodeEditor = ({ roomID }) => {
             <div className='flex flex-row space-x-3'>
                 {hideUsers ? null : (
                     <div className='flex flex-row space-x-3'>
-                        {users.map((user, index) => (
-                            <Client key={index} username={user} />
+                        {users.map((user) => (
+                            <Client key={user.clientId} username={user.name} color={user.color} />
                         ))}
                     </div>
                 )}

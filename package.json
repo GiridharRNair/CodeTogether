@@ -18,15 +18,12 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.12.1",
     "react-select": "^5.7.3",
-    "react-spring": "^9.7.1",
     "short-unique-id": "^4.4.4",
-    "uuid": "^9.0.0",
     "y-monaco": "^0.1.4",
     "y-webrtc": "^10.2.4",
     "yjs": "^13.5.44"
   },
   "devDependencies": {
-    "@convergencelabs/monaco-collab-ext": "^0.4.0",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
