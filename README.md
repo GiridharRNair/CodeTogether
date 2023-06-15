@@ -14,7 +14,9 @@ To run this project, you will need to add the following environment variables to
 
 `VITE_RAPID_API_URL`=https://judge0-ce.p.rapidapi.com/submissions/
 
-`VITE_BACKEND_URL`={The link to the deployment of the y-webrtc back-end}
+`VITE_BACKEND_URL`=wss://y-webrtc-signaling-eu.herokuapp.com/
+
+If the back-end URL doesn't work, you can deploy your own. 
 
 
 ## Run Locally
