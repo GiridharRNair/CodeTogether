@@ -104,6 +104,7 @@ const CodeEditor = ({ roomID }) => {
                         position: absolute;
                         color: ${client.color};
                         padding-left: 3px;
+                        margin-top: -2px;
                         font-size: 12px;
                     }
                 `;
