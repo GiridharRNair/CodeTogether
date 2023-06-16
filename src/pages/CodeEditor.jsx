@@ -134,6 +134,7 @@ const CodeEditor = ({ roomID }) => {
             </div>
             <LanguagesDropdown currValue={currLang} onSelectChange={(event) => setCurrLang(event)}/>
             <Editor
+                aria-labelledby="Code Editor"
                 className='justify-center'
                 language={currLang.value}
                 height="50vh"
