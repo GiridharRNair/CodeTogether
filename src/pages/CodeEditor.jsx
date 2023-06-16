@@ -75,10 +75,16 @@ const CodeEditor = ({ roomID }) => {
             clientsArr.forEach(client => {
                 const selectionClass = `yRemoteSelection-${client.clientId}`;
                 const selectionHeadClass = `yRemoteSelectionHead-${client.clientId}`;
+
+                const red = parseInt(client.color.substring(1, 3), 16);
+                const green = parseInt(client.color.substring(3, 5), 16);
+                const blue = parseInt(client.color.substring(5, 7), 16);
+
                 const selectionStyle = document.createElement('style');
                 selectionStyle.innerHTML = `
                     .${selectionClass} {
-                        background-color: ${client.color};
+                        background-color: rgba(${red}, ${green}, ${blue}, 0.70);
+                        border-radius: 2px
                     }
 
                     .${selectionHeadClass} {
