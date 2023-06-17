@@ -45,9 +45,11 @@ const CodeEditor = ({ roomID }) => {
         awareness.setLocalStateField("user", {
             name: person,
             color: randomUserColor
-        });
-            
-        awareness.on('change', changes => {
+        });     
+
+        const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), awareness);
+        
+        awareness.on('update', () => {
             var jsonData = Array.from(awareness.getStates());
             if (jsonData.length > 1) {
                 setHideUsers(false);
@@ -59,11 +61,7 @@ const CodeEditor = ({ roomID }) => {
             } else {
                 setHideUsers(true);
             }
-        });        
 
-        const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), awareness);
-        
-        awareness.on('update', () => {
             var jsonData = Array.from(awareness.getStates());
 
             var clientsArr = jsonData.map(item => ({
