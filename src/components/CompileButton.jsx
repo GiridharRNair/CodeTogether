@@ -123,7 +123,7 @@ function CompileButton({ content, langauge, input, setOutput }) {
         };
 
     return (
-        <button aria-labelledby="Compile Button" className='w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mr-1' disabled={processing} onClick={compileCode}>{status}</button>
+        <button aria-label="Compile Button" className='w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mr-1' disabled={processing} onClick={compileCode}>{status}</button>
     )
 }
 

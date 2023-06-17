@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Avatar from 'react-avatar';
 
-function Client({ username = '', color = ''}) {
-
+const Client = memo(({ username = '', color = ''}) => {
 
   return (
     <div className='space-x-1 text-stone-500'>
@@ -10,6 +9,6 @@ function Client({ username = '', color = ''}) {
         <span>{username}</span>
     </div>
   )
-}
+});
 
 export default Client

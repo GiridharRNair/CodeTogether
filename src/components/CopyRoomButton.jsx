@@ -19,7 +19,7 @@ function CopyRoomButton() {
   };
 
   return (
-    <button aria-labelledby="Copy Room URL" className='w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' onClick={copyUrlToClipboard}>
+    <button aria-label="Copy Room URL" className='w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' onClick={copyUrlToClipboard}>
       {buttonText}
     </button>
   );

@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, React, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ShortUniqueId from 'short-unique-id';
 
-import CodeEditor from './pages/CodeEditor';
+const CodeEditor = lazy(() => import('./pages/CodeEditor'));
+
+const uuid = new ShortUniqueId({ length: 6 });
 
 function App() {
   const [roomID, setRoomID] = useState('');
-  const uuid = new ShortUniqueId({ length: 6 });
 
   useEffect(() => {
     const url = window.location.pathname;
@@ -26,8 +27,22 @@ function App() {
     <div className='h-screen overflow-y-scroll no-scrollbar'>
       <BrowserRouter>
         <Routes>
-          <Route path="/:uuid" element={<CodeEditor key={roomID} roomID={roomID}/>} />
-          <Route path="/" element={<CodeEditor key={roomID} roomID={roomID}/>} />
+          <Route
+            path="/:uuid"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <CodeEditor key={roomID} roomID={roomID} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <CodeEditor key={roomID} roomID={roomID} />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

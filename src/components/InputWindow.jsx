@@ -13,7 +13,7 @@ const InputWindow = ({ setInput }) => {
       </h1>
       <div className="overflow-y-scroll no-scrollbar text-white font-mono h-56 rounded-md font-normal text-sm">
         <textarea 
-          aria-labelledby="Input Window"
+          aria-label="Input Window"
           className='w-full rounded-md h-56 p-2 bg-[#1e1e1e]'
           onChange={handleInputChange}
         />
