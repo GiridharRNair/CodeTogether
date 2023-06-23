@@ -6,7 +6,7 @@ This is a collaborative code editor that allows multiple users to work together 
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file. These variables will allow you to use the [Judge0 API Compiler](https://rapidapi.com/judge0-official/api/judge0-ce) and sync the code to all connected users using [y-webrtc](https://github.com/yjs/y-webrtc).
+To run this project, you will need to add the following environment variables to an .env file. These variables will allow you to use the [Judge0 API Compiler](https://rapidapi.com/judge0-official/api/judge0-ce) and sync the code to all connected users using [y-webrtc](https://github.com/yjs/y-webrtc).
 
 `VITE_RAPID_API_HOST`=judge0-ce.p.rapidapi.com
 
@@ -16,7 +16,7 @@ To run this project, you will need to add the following environment variables to
 
 `VITE_BACKEND_URL`=wss://y-webrtc-signaling-eu.herokuapp.com/
 
-If the back-end URL doesn't work, you can deploy your own. 
+If the back-end URL doesn't work, you can deploy your own [y-webrtc](https://github.com/yjs/y-webrtc). 
 
 
 ## Run Locally
