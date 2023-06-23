@@ -123,7 +123,14 @@ function CompileButton({ content, langauge, input, setOutput }) {
         };
 
     return (
-        <button aria-label="Compile Button" className='w-48 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-1 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mr-1' disabled={processing} onClick={compileCode}>{status}</button>
+        <a aria-label="Compile Button" className="flex justify-center items-center w-52 mr-1 relative px-5 py-1 overflow-hidden border border-black rounded group" disabled={processing} onClick={compileCode}>
+            <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
+            <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
+            <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
+            <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
+            <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">{status}</span>
+        </a>
     )
 }
 

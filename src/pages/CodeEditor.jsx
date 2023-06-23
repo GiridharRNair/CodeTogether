@@ -80,12 +80,13 @@ const CodeEditor = ({ roomID }) => {
 
                 const selectionStyle = document.createElement('style');
                 selectionStyle.innerHTML = `
-                    .${selectionClass} {
-                        background-color: rgba(${red}, ${green}, ${blue}, 0.70);
-                        border-radius: 2px
-                    }
+                    // .${selectionClass} {
+                    //     background-color: rgba(${red}, ${green}, ${blue}, 0.70);
+                    //     border-radius: 2px
+                    // }
 
                     .${selectionHeadClass} {
+                        z-index: 1;
                         position: absolute;
                         border-left: ${client.color} solid 2px;
                         border-top: ${client.color} solid 2px;
@@ -106,10 +107,14 @@ const CodeEditor = ({ roomID }) => {
                     .${selectionHeadClass}:hover::before {
                         content: '${client.name}';
                         position: absolute;
-                        color: ${client.color};
+                        background-color: ${client.color};
+                        color: black;
+                        padding-right: 3px;
                         padding-left: 3px;
                         margin-top: -2px;
                         font-size: 12px;
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
                     }
                 `;
                 document.head.appendChild(selectionStyle);
