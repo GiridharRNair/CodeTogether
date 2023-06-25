@@ -58,69 +58,38 @@ function CompileButton({ content, langauge, input, setOutput }) {
         }
 
         startInterval();
-
-        const formData = {
-            language_id: langauge,
-            source_code: window.btoa(sourceCode),
-            stdin: window.btoa(input),
-        };
         
         const options = {
-            url: import.meta.env.VITE_RAPID_API_URL,
             method: 'POST',
-            params: { base64_encoded: true, wait: false },
+            url: import.meta.env.VITE_RAPID_API_URL,
             headers: {
                 "content-type": "application/json",
-                "Content-Type": "application/json",
                 'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
                 'X-RapidAPI-Host': import.meta.env.VITE_RAPID_API_HOST
             },
-            data: formData,
+            data: {
+                language: langauge.id,
+                version: 'latest',
+                code: sourceCode,
+                input: input,
+            }
         };
         
         axios
             .request(options)
             .then(function (response) {
-                const token = response.data.token;
-                checkStatus(token);
+                console.log(response.data)
+                setOutput(response.data)
+                stopInterval();
             })
             .catch((err) => {
                 let error = err.response ? err.response.data : err;
+                setOutput(error)
                 stopInterval();
                 console.log(error);
             });
-        }
-        
-        const checkStatus = async (token) => {
-        const options = {
-            method: "GET",
-            url: import.meta.env.VITE_RAPID_API_URL + token,
-            params: { base64_encoded: "true", fields: "*" },
-            headers: {
-                "X-RapidAPI-Host": import.meta.env.VITE_RAPID_API_HOST,
-                "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
-            },
-        };
+    }
 
-        try {
-            let response = await axios.request(options);
-            let statusId = response.data.status?.id;
-
-            if (statusId === 1 || statusId === 2) {
-                setTimeout(() => {
-                    checkStatus(token)
-                }, 2000)
-            return
-            } else {
-                stopInterval();
-                setOutput(response.data)
-                return
-            }
-        } catch (err) {
-                console.log("err", err);
-                stopInterval();
-            }
-        };
 
     return (
         <a aria-label="Compile Button" className="flex justify-center items-center w-52 mr-1 relative px-5 py-1 overflow-hidden border border-black rounded group" disabled={processing} onClick={compileCode}>

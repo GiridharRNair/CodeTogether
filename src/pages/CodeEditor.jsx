@@ -18,7 +18,7 @@ const CodeEditor = ({ roomID }) => {
     const editorRef = useRef(null);
     const [users, setUsers] = useState([]);
     const [hideUsers, setHideUsers] = useState(false);
-    const [currLang, setCurrLang] = useState(languageOptions[0]);
+    const [currLang, setCurrLang] = useState(languageOptions[57]);
     const [compilerText, setCompilerText] = useState('');
     const [input, setInput] = useState('');
     const randomUserColor = randomColor();
@@ -80,10 +80,10 @@ const CodeEditor = ({ roomID }) => {
 
                 const selectionStyle = document.createElement('style');
                 selectionStyle.innerHTML = `
-                    // .${selectionClass} {
-                    //     background-color: rgba(${red}, ${green}, ${blue}, 0.70);
-                    //     border-radius: 2px
-                    // }
+                    .${selectionClass} {
+                        background-color: rgba(${red}, ${green}, ${blue}, 0.70);
+                        border-radius: 2px
+                    }
 
                     .${selectionHeadClass} {
                         z-index: 1;
@@ -139,7 +139,7 @@ const CodeEditor = ({ roomID }) => {
             <Editor
                 aria-labelledby="Code Editor"
                 className='justify-center'
-                language={currLang.value}
+                language={(currLang.id === 'python3' || currLang.id === 'python2') ? 'python' : currLang.id}
                 height="50vh"
                 theme='vs-dark'
                 onMount={handleEditorDidMount}
@@ -148,7 +148,7 @@ const CodeEditor = ({ roomID }) => {
                 }}
             />
             <div className='flex flex-row'>
-                <CompileButton content={editorRef} langauge={currLang.id} input={input} setOutput={(output) => {setCompilerText(output)}}/>
+                <CompileButton content={editorRef} langauge={currLang} input={input} setOutput={(output) => {setCompilerText(output)}}/>
                 <CopyRoomButton />
             </div>
             <div className='flex md:flex-row md:space-x-2 flex-col'>
