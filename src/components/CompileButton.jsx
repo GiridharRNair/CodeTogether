@@ -39,17 +39,16 @@ function CompileButton({ content, langauge, input, setOutput }) {
     }
 
     function startInterval () {
-        setProcessing(true);
         intervalId = setInterval(statusUpdate, 300);
     }
     
     function stopInterval () {
-        setProcessing(false);
         clearInterval(intervalId);
         setStatus('Compile and Execute');
     }
 
     async function compileCode() {
+        setProcessing(true);
         var sourceCode = content.current.getValue().replace(regex, '')
 
         if(!sourceCode || hasNonLatin1Characters(sourceCode)) {
@@ -80,26 +79,28 @@ function CompileButton({ content, langauge, input, setOutput }) {
             .then(function (response) {
                 console.log(response.data)
                 setOutput(response.data)
-                stopInterval();
             })
             .catch((err) => {
                 let error = err.response ? err.response.data : err;
                 setOutput(error)
-                stopInterval();
                 console.log(error);
+            })
+            .finally(() => {
+                setProcessing(false);
+                stopInterval();
             });
     }
 
 
     return (
-        <a aria-label="Compile Button" className="flex justify-center items-center w-52 mr-1 relative px-5 py-1 overflow-hidden border border-black rounded group" disabled={processing} onClick={compileCode}>
+        <button aria-label="Compile Button" className="flex justify-center items-center w-52 mr-1 relative px-5 py-1 overflow-hidden border border-black rounded group" disabled={processing} onClick={compileCode}>
             <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
             <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
             <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
             <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
             <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
             <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">{status}</span>
-        </a>
+        </button>
     )
 }
 
