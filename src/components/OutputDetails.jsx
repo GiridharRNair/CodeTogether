@@ -2,7 +2,7 @@ import React from "react";
 
 const OutputDetails = ({ outputDetails }) => {
   return (
-    <div className="text-stone-500 metrics-container py-1 flex flex-col">
+    <div className="text-stone-500 metrics-container py-1 flex flex-col space-y-2">
       <p className="text-sm">
         CPU Time:
         {outputDetails?.cpuTime && (
