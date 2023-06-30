@@ -18,7 +18,7 @@ const CodeEditor = ({ roomID }) => {
     const editorRef = useRef(null);
     const [users, setUsers] = useState([]);
     const [hideUsers, setHideUsers] = useState(false);
-    const [currLang, setCurrLang] = useState(languageOptions[57]);
+    const [currLang, setCurrLang] = useState(languageOptions[56]);
     const [compilerText, setCompilerText] = useState('');
     const [input, setInput] = useState('');
     const randomUserColor = randomColor();
