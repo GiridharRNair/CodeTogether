@@ -19,11 +19,6 @@ export const languageOptions = [
   },
   { label: 'BC', id: 'bc', versions: [ '1.06.95', '1.07.1' ] },
   { label: 'Befunge', id: 'befunge', versions: [ 'cfunge 0.9.0' ] },
-  {
-    label: 'Blockly',
-    id: 'blockly',
-    versions: [ 'Dart', 'Lua', 'PHP', 'Python' ]
-  },
   { label: 'Brainf**k', id: 'brainfuck', versions: [ 'bfc-0.1' ] },
   {
     label: 'C',
