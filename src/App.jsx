@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <div className='h-screen overflow-y-scroll no-scrollbar'>
+    <>
       <BrowserRouter>
         <Routes>
           <Route
@@ -57,7 +57,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Analytics />
-    </div>
+    </>
   );
 }
 
