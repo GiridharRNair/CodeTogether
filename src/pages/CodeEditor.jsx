@@ -139,7 +139,7 @@ const CodeEditor = ({ roomID }) => {
             <Editor
                 aria-labelledby="Code Editor"
                 className='justify-center'
-                language={(currLang.id === 'rhino') ? 'javascript' : ((currLang.id === 'python3' || currLang.id === 'python2') ? 'python' : currLang.id)}
+                language={(currLang.id === 'rhino' || currLang.id === 'nodejs') ? 'javascript' : ((currLang.id === 'python3' || currLang.id === 'python2') ? 'python' : currLang.id)}
                 height="50vh"
                 theme='vs-dark'
                 onMount={handleEditorDidMount}
