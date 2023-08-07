@@ -11,10 +11,10 @@ const InputWindow = ({ setInput }) => {
       <h1 className="text-stone-500 font-bold text-xl">
         Input
       </h1>
-      <div className="text-white font-mono md:h-56 h-28 rounded-md font-normal text-sm">
+      <div className="text-white font-mono md:h-56 2xl:h-72 h-28 rounded-md font-normal text-sm">
         <textarea 
           aria-label="Input Window"
-          className='w-full rounded-md h-56 p-2 bg-[#1e1e1e]'
+          className='w-full rounded-md h-56 p-1 bg-[#1e1e1e]'
           style={{ resize: 'none', height: '100%'}}
           onChange={handleInputChange}
         />
